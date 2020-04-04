@@ -5,7 +5,8 @@
     "build": "umi build",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
-    "test:coverage": "umi-test --coverage"
+    "test:coverage": "umi-test --coverage",
+    "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -21,10 +22,12 @@
   "dependencies": {
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.0.17",
-    "lint-staged": "^10.0.7",
+    "js-export-excel": "^1.1.2",
+    "lint-staged": "^10.1.1",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-html-table-to-excel": "^2.0.0",
     "umi": "^3.0.17",
     "yorkie": "^2.0.0"
   }
