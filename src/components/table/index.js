@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Table, Button } from 'antd';
+import { Table, Button, Select, Input } from 'antd';
 import ExportJsonExcel from 'js-export-excel';
 import { connect } from 'dva';
 import styles from './index.less';
 
+const { Option } = Select;
 @connect(({ menu }) => ({
     ...menu
 }))
@@ -41,10 +42,52 @@ export default class TableList extends Component {
         
           var toExcel = new ExportJsonExcel(option); 
           toExcel.saveExcel();        
-        }
+    }
 
+    renderOptions = data => {
+      let arr = []
+      if (data.length > 0) {
+        arr = data.map(item => {
+          return <Option key={item.key} value={item.key}>{item.name}</Option>
+        })
+      }
+      return arr
+    }
+  
+    onSelectedChange = e => {
+      const { dispatch } = this.props;
+      dispatch({
+        type: 'menu/changeState',
+        payload: {
+          selectedGroup: e
+        }
+      })
+    }
+  
+    onInputChange = e => {
+      const { dispatch } = this.props;
+      dispatch({
+        type: 'menu/changeState',
+        payload: {
+          selectedName: e.target.value
+        }
+      })
+    }
+  
+    onSearch = () => {
+      const { selectedGroup, selectedName, dispatch } = this.props;
+      dispatch({
+        type: 'menu/searchTableData',
+        payload: {
+          selectedName,
+          selectedGroup
+        }
+      })
+
+    }
+  
     render() {
-        const { tableData } = this.props;
+        const { tableData, GroupData, selectedGroup, selectedName } = this.props;
         const columns = [
             {
               title: '名称',
@@ -78,6 +121,29 @@ export default class TableList extends Component {
         return (
             <div>
                 <div className={styles.exportButton}>
+                  <div className={styles.searchPart}>
+                    <span>请选择团：</span>
+                    <Select
+                      className={styles.selectedGroup}
+                      value={selectedGroup}
+                      onChange={this.onSelectedChange}
+                      >
+                      {this.renderOptions(GroupData)}
+                    </Select>
+                    <span>请输入名称：</span>
+                    <Input 
+                      className={styles.selectedGroup}
+                      value={selectedName}
+                      onChange={this.onInputChange}
+                    />
+                    <Button 
+                      type="primary"
+                      onClick={this.onSearch}
+                      style={{ marginTop: 10 }}
+                    > 
+                    查询
+                    </Button>
+                  </div>
                     <Button
                         onClick={this.downloadExcel}
                         className={styles.export}

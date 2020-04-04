@@ -3,6 +3,30 @@ import { notification } from 'antd';
 export default {
     namespace: 'menu',
     state: {
+        selectedName: '', // 搜索姓名
+        selectedGroup: '0', // 默认选中所有图
+        GroupData: [
+            {
+                name: '全部',
+                key: '0'
+            },
+            {
+                name: '梦起',
+                key: '1'
+            },
+            {
+                name: '龙腾',
+                key: '2'
+            },
+            {
+                name: '盟',
+                key: '3'
+            },
+            {
+                name: '北极',
+                key: '4'
+            }
+        ],
         menuList: [
             {
                 name: '530区',
@@ -11,24 +35,6 @@ export default {
                     {
                         name: '夜',
                         key: 'four',
-                        child: [
-                            {
-                                name: '梦起',
-                                key: '1'
-                            },
-                            {
-                                name: '龙腾',
-                                key: '2'
-                            },
-                            {
-                                name: '盟',
-                                key: '3'
-                            },
-                            {
-                                name: '北极',
-                                key: '4'
-                            }
-                        ]
                     },
                     {
                         name: '缘聚天下',
@@ -84,6 +90,9 @@ export default {
     },
 
     effects: {
+        *searchTableData({ payload }, { put, call, select }) {
+
+        },
 
     },
 

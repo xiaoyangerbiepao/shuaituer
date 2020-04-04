@@ -47,7 +47,6 @@ export default class Menus extends Component {
 
     render() {
         const { menuList, selectedMenuKeys } = this.props;
-        console.log('menuList', menuList)
         return (
             <div className={styles.menuLine}>
                 <Menu
