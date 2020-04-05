@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Table, Button, Select, Input } from 'antd';
+import { Table, Button, Select, Input, DatePicker  } from 'antd';
 import ExportJsonExcel from 'js-export-excel';
 import { connect } from 'dva';
 import styles from './index.less';
+import moment from 'moment';
 
 const { Option } = Select;
 @connect(({ menu }) => ({
@@ -86,8 +87,44 @@ export default class TableList extends Component {
 
     }
   
+    componentDidMount() {
+      const { endTime, dispatch } = this.props;
+        const dd = new Date(endTime)
+        var week = dd.getDay(); //获取时间的星期数
+        var minus = week ? week - 1 : 6;
+        dd.setDate(dd.getDate() - minus); //获取minus天前的日期
+        var y = dd.getFullYear();
+        var m = dd.getMonth() + 1; //获取月份
+        var d = dd.getDate();
+        dispatch({
+          type: 'menu/changeState',
+          payload: {
+            startTime: y + "-" + m + "-" + d
+          }
+        })
+    }
+
+    startTimeChange = (date, str) => {
+      const { dispatch } = this.props;
+      dispatch({
+        type: 'menu/changeState',
+        payload: {
+          startTime: str
+        }
+      })
+    }
+  
+    endTimeChange = (date, str) => {
+      const { dispatch } = this.props;
+      dispatch({
+        type: 'menu/changeState',
+        payload: {
+          endTime: str
+        }
+      })
+    }
     render() {
-        const { tableData, GroupData, selectedGroup, selectedName } = this.props;
+        const { tableData, GroupData, selectedGroup, selectedName, startTime, endTime } = this.props;
         const columns = [
             {
               title: '名称',
@@ -118,6 +155,7 @@ export default class TableList extends Component {
               },
             },
           ];
+          const dateFormat = 'YYYY-MM-DD';
         return (
             <div>
                 <div className={styles.exportButton}>
@@ -136,6 +174,18 @@ export default class TableList extends Component {
                       value={selectedName}
                       onChange={this.onInputChange}
                     />
+                    <DatePicker
+                      value={moment(startTime, dateFormat)}
+                      format={dateFormat}
+                      className={styles.datePickerone}
+                      onChange={this.startTimeChange}
+                      />- 
+                    <DatePicker
+                      value={moment(endTime, dateFormat)}
+                      format={dateFormat}
+                      className={styles.datePickertwo}
+                      onChange={this.endTimeChange}
+                      />
                     <Button 
                       type="primary"
                       onClick={this.onSearch}

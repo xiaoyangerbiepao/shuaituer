@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class Group extends Component {
+export default class PersonRight extends Component {
     render() {
         return (
             <div>
-                团
+                人员权限
             </div>
         )
     }

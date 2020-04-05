@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import Selectedorignaize from '../selectedorignaize';
+import CreatePerson from '../createModal/createPerson';
 import { Table } from 'antd';
 
 import styles from './index.less';
@@ -40,6 +41,7 @@ export default class Person extends Component {
                     pagination={false}
                     size='small'
                 />
+                <CreatePerson />
             </div>
         )
     }

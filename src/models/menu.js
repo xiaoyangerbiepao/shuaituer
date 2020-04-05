@@ -1,8 +1,11 @@
 import { notification } from 'antd';
+import moment from 'moment';
 
 export default {
     namespace: 'menu',
     state: {
+        endTime: moment(new Date()).format('YYYY-MM-DD'),
+        startTime: null,
         selectedName: '', // 搜索姓名
         selectedGroup: '0', // 默认选中所有图
         GroupData: [

@@ -13,12 +13,23 @@ export default class Selectedorignaize extends Component {
     renderOptions = data => {
         let arr = []
         if (data.length > 0) {
-          arr = data.map(item => {
+            arr = data.map(item => {
             return <Option key={item.key} value={item.key}>{item.name}</Option>
-          })
+            })
         }
         return arr
-      }
+    }
+
+    newPerson = () => {
+        const { dispatch } = this.props;
+        dispatch({
+            type: 'backMenu/changeState',
+            payload: {
+                addPersonModalVisible: true
+            }
+        })
+    }
+    
     render() {
         const { GroupData, UnionData, partData} = this.props;
         return (
@@ -39,7 +50,7 @@ export default class Selectedorignaize extends Component {
                 </div>
                 <div>
                     <Button style={{ marginRight: 15 }}>设置人员权限</Button>
-                    <Button style={{ marginRight: 15 }}>新建</Button>
+                    <Button style={{ marginRight: 15 }} onClick={this.newPerson}>新建</Button>
                     <Button>违规扣分</Button>
                 </div>
             </div>

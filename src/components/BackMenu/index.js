@@ -37,11 +37,12 @@ export default class BackMenu extends Component {
                     {/* <Menu.Item key='union'>
                         盟管理
                     </Menu.Item>
-                    <Menu.Item key='group'>
-                        团管理
-                    </Menu.Item> */}
+ */}
                     <Menu.Item key='person'>
                         人员管理
+                    </Menu.Item>
+                    <Menu.Item key='personRight'>
+                        人员权限设置
                     </Menu.Item>
                 </Menu>
             </div>

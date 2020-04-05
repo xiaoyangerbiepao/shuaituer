@@ -3,8 +3,7 @@ import HeadBack from '@/components/backHead';
 import BackMenu from '@/components/BackMenu';
 import { connect } from 'dva';
 import Part from '@/components/Part';
-import Union from '@/components/Union';
-import Group from '@/components/Group';
+import PersonRight from '@/components/PersonRight';
 import Person from '@/components/Person';
 import styles from './index.less';
 
@@ -21,7 +20,8 @@ export default class index extends Component {
                     <BackMenu />
                     <div className={styles.back_detail}>
                         {
-                            backSelectedKeys[0] === 'part' ? <Part />  : <Person />
+                            backSelectedKeys[0] === 'part' ? <Part />  :
+                            backSelectedKeys[0] === 'personRight' ? <PersonRight / > : <Person />
                         }
                     </div>
                 </div>

@@ -2,6 +2,20 @@ import { notification } from 'antd';
 export default {
     namespace: 'backMenu',
     state: {
+        addPartModalVisible: false,
+        addUnionModalVisible: false,
+        addGroupModalVisible: false,
+        modifyNameModalVisible: false,
+        addPersonModalVisible: false,
+        copyUnionModalVisible: false,
+        copyUnion: '1',
+        addPersonDuty: '1', // 新增成员职务
+        selectedName: '', // 选中Tree节点名称
+        modifyName: '', // 修改名称
+        addGroupName: '', // 新建团名字
+        addUnionName: '', // 新建盟名字
+        addPartName: '', // 新建区名字
+        addPersonName: '', // 新建人员名字
         backSelectedKeys: ['part'],
         selectedTreeKeys: [],
         partData: [
