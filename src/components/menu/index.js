@@ -10,6 +10,12 @@ const { SubMenu } = Menu;
 }))
 export default class Menus extends Component {
 
+    componentDidMount() {
+        const { dispatch } = this.props;
+        dispatch({
+            type: 'menu/GetOrganization'
+        })
+    }
     rederMenu = data => 
         data.map(item => {
             if (item.child && item.child.length > 0) {

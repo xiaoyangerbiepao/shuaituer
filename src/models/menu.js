@@ -1,5 +1,7 @@
 import { notification } from 'antd';
 import moment from 'moment';
+import { GetOrganization } from '@/services';
+import { fetch } from 'dva';
 
 export default {
     namespace: 'menu',
@@ -93,8 +95,8 @@ export default {
     },
 
     effects: {
-        *searchTableData({ payload }, { put, call, select }) {
-
+        *GetOrganization({ payload }, { put, call, select }) {
+            const res = yield call(GetOrganization);
         },
 
     },
